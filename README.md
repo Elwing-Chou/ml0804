@@ -1,1 +1,26 @@
-# ml0804
+# 桃園
+
+## 讀取
+
+```python
+import os
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.losses import CategoricalCrossentropy
+
+if not os.path.exists("drive/My Drive/mlp.h5"):
+    layers = [
+        # 784 * 128 + 128(bias)
+        Dense(256, activation="relu", input_dim=784),
+        # 128 * 10(連線個數) + 10(bias)
+        Dense(10, activation="softmax")
+    ]
+    model = Sequential(layers)
+    model.compile(loss=CategoricalCrossentropy(),
+       optimizer="adam",
+       metrics=["accuracy"])
+else:
+    print("Loading...")
+    model = load_model("drive/My Drive/mlp.h5") 
+# fit
+```
